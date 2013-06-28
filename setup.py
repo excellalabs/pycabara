@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pycabara',
-      version='0.2',
+      version='0.3',
       description='Python implementation of Capybara, an acceptance test framework for web applications',
       url='http://github.com/ruthlesshelp/pycabara',
       author='Stephen Ritchie',
