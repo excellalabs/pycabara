@@ -12,11 +12,11 @@ def readme():
         return f.read()
 
 setup(name='pycabara',
-      version='0.3',
+      version='0.4',
       description='Python implementation of Capybara, an acceptance test framework for web applications',
       long_description=readme(),
       classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Alpha',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2.7',
         'Topic :: Software Development :: Testing',
