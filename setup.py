@@ -16,7 +16,7 @@ setup(name='pycabara',
       description='Python implementation of Capybara, an acceptance test framework for web applications',
       long_description=readme(),
       classifiers=[
-        'Development Status :: 4 - Alpha',
+        'Development Status :: 1 - Planning',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2.7',
         'Topic :: Software Development :: Testing',
