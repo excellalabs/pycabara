@@ -29,6 +29,8 @@ class Selenium(object):
         self.current_url = self.get_browser().current_url
 
     def find(self, locator):
+        if self.__find_element_by_name(locator):
+            return Element(self)
         if self.__find_element_by_id(locator):
             return Element(self)
         else:
@@ -61,21 +63,34 @@ class Selenium(object):
 
         return text in body_text
 
+    def click_button(self):
+        if self.current_element is not None:
+            self.current_element.submit()
+        else:
+            raise AssertionError('Current element is invalid or not set.')
+
+    def click_button(self, locator):
+        if self.__find_element_by_id(locator):
+            self.current_element.submit()
+            return Element(self)
+        if self.__find_element_by_name(locator):
+            self.current_element.submit()
+            return Element(self)
+        else:
+            return None
+
     def quit(self):
         self.get_browser().quit()
 
+    # private helper methods
     def __init_browser(self):
         if self.browser_name == ':chrome':
-            self.__browser = webdriver.Chrome()
+            self.__browser = webdriver.Chrome('/usr/bin/chromedriver')
 
     def __wait_for_load(self):
         pass
 
-    # testing use only
-    def set_fake_browser(self, fake_browser):
-        self.__browser = fake_browser
-
-    # Finder methods
+    # private finder methods
     def __find_element_by_id(self, element_id):
         message = u'Element id=%s was not found after %d seconds' % (element_id, self.driver_wait)
         element = WebDriverWait(self.get_browser(), self.driver_wait) \
@@ -86,3 +101,19 @@ class Selenium(object):
         else:
             self.current_element = element
             return True
+
+    def __find_element_by_name(self, name):
+        # search_box = driver.find_element_by_name('q')
+        message = u'Element id=%s was not found after %d seconds' % (name, self.driver_wait)
+        element = WebDriverWait(self.get_browser(), self.driver_wait) \
+            .until(lambda y: y.find_element_by_name(name), message)
+        if element is None:
+            self.current_element = None
+            return False
+        else:
+            self.current_element = element
+            return True
+
+    # testing use only
+    # def set_fake_browser(self, fake_browser):
+    #     self.__browser = fake_browser

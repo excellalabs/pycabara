@@ -24,6 +24,9 @@ class Session(object):
         element.set(text)
         return element
 
+    def click_button(self, locator):
+        self.driver.click_button(locator)
+
     def should_have_content(self, content):
         has_content = False
         if self.driver.has_title(content):
