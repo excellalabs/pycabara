@@ -1,9 +1,9 @@
 import unittest
 from hamcrest import *
+from pycabara.Element import Element
 
 from pycabara.Session import Session
 from pycabara.Selenium import Selenium
-from pycabara.tests_unit.fakes.FakeDriver import FakeDriver
 
 __author__ = 'ruthlesshelp'
 
@@ -106,3 +106,31 @@ class SessionTest(unittest.TestCase):
 
         # assert
         assert_that(actual, is_(False))
+
+
+class FakeDriver(object):
+
+    def __init__(self):
+        self.current_url = None
+
+        # setup behavior
+        self.stub_has_title = False
+        self.stub_has_text = False
+        self.stub_set = ''
+
+    def visit(self, path):
+        self.current_url = path
+
+    def find(self, locator):
+        element = Element(self)
+        element.id = locator
+        return element
+
+    def set(self, text):
+        self.stub_set = text
+
+    def has_title(self, text):
+        return self.stub_has_title
+
+    def has_text(self, text):
+        return self.stub_has_text

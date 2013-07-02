@@ -31,5 +31,5 @@ setup(name='pycabara',
           'selenium',
       ],
       test_suite='nose.collector',
-      tests_require=['nose'],
+      tests_require=['nose', 'pyhamcrest'],
       zip_safe=False)
