@@ -2,5 +2,5 @@ __author__ = 'ruthlesshelp'
 
 
 def about():
-    return (r'Python implementation of Capybara, an acceptance test framework for web applications.'
-            r'Pycabara source https://github.com/ruthlesshelp/pycabara')
+    with open('LICENSE.txt') as f:
+        return f.read()
