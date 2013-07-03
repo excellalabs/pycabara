@@ -1,5 +1,18 @@
+========
 Pycabara
---------
+========
+
+.. image:: https://travis-ci.org/ruthlesshelp/pycabara.png?branch=master
+    :target: https://travis-ci.org/ruthlesshelp/pycabara
+    :alt: Travis CI Build Status
+
+.. image:: https://pypip.in/v/pycabara/badge.png
+    :target: https://crate.io/packages/pycabara/
+    :alt: Latest PyPI version
+
+.. image:: https://pypip.in/d/pycabara/badge.png
+    :target: https://crate.io/packages/pycabara/
+    :alt: Number of PyPI downloads
 
 Pycabara is a Python implementation of Capybara, an acceptance test framework for web applications.
 
