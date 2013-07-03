@@ -115,5 +115,5 @@ class Selenium(object):
             return True
 
     # testing use only
-    # def set_fake_browser(self, fake_browser):
-    #     self.__browser = fake_browser
+    def set_fake_browser(self, fake_browser):
+        self.__browser = fake_browser
