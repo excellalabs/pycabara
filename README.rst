@@ -2,8 +2,8 @@
 Pycabara
 ========
 
-.. image:: https://travis-ci.org/ruthlesshelp/pycabara.png?branch=master
-    :target: https://travis-ci.org/ruthlesshelp/pycabara
+.. image:: https://travis-ci.org/excellaco/pycabara.png?branch=master
+    :target: https://travis-ci.org/excellaco/pycabara
     :alt: Travis CI Build Status
 
 .. image:: https://pypip.in/v/pycabara/badge.png
