@@ -27,6 +27,12 @@ class Session(object):
     def click_button(self, locator):
         self.driver.click_button(locator)
 
+    def click_link(self, locator):
+        self.driver.click_link(locator)
+
+    def verify_url(self, url):
+        return self.driver.get_current_url() == url
+
     def should_have_content(self, content):
         has_content = False
         if self.driver.has_title(content):
