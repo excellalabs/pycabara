@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 
 from pycabara.Element import Element
@@ -79,22 +79,37 @@ class Selenium(object):
         else:
             return None
 
+    def click_link(self, locator):
+        if self.__find_element_by_link_text(locator):
+            self.current_element.click()
+            return Element(self)
+        else:
+            return None
+
+    def get_current_url(self):
+        current_url = self.get_browser().current_url
+        return current_url
+
     def quit(self):
         self.get_browser().quit()
 
     # private helper methods
     def __init_browser(self):
         if self.browser_name == ':chrome':
-            self.__browser = webdriver.Chrome('/usr/bin/chromedriver')
+            self.__browser = webdriver.Chrome()
 
     def __wait_for_load(self):
-        pass
+        pass        
 
     # private finder methods
     def __find_element_by_id(self, element_id):
         message = u'Element id=%s was not found after %d seconds' % (element_id, self.driver_wait)
-        element = WebDriverWait(self.get_browser(), self.driver_wait) \
-            .until(lambda y: y.find_element_by_id(element_id), message)
+        element = None
+        try:
+            element = WebDriverWait(self.get_browser(), self.driver_wait) \
+                .until(lambda y: y.find_element_by_id(element_id), message)
+        except TimeoutException:
+            pass
         if element is None:
             self.current_element = None
             return False
@@ -105,8 +120,27 @@ class Selenium(object):
     def __find_element_by_name(self, name):
         # search_box = driver.find_element_by_name('q')
         message = u'Element id=%s was not found after %d seconds' % (name, self.driver_wait)
-        element = WebDriverWait(self.get_browser(), self.driver_wait) \
-            .until(lambda y: y.find_element_by_name(name), message)
+        element = None
+        try:
+            element = WebDriverWait(self.get_browser(), self.driver_wait) \
+                .until(lambda y: y.find_element_by_name(name), message)
+        except TimeoutException:
+            pass
+        if element is None:
+            self.current_element = None
+            return False
+        else:
+            self.current_element = element
+            return True
+
+    def __find_element_by_link_text(self, text):
+        message = u'Link with text=%s was not found after %d seconds' % (text, self.driver_wait)
+        element = None
+        try:
+            element = WebDriverWait(self.get_browser(), self.driver_wait) \
+                .until(lambda y: y.find_element_by_link_text(text), message)
+        except TimeoutException:
+            pass
         if element is None:
             self.current_element = None
             return False
