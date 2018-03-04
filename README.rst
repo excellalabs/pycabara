@@ -6,11 +6,11 @@ Pycabara
     :target: https://travis-ci.org/excellaco/pycabara
     :alt: Travis CI Build Status
 
-.. image:: https://pypip.in/v/pycabara/badge.png
+.. image:: https://img.shields.io/pypi/v/pycabara.svg
     :target: https://crate.io/packages/pycabara/
     :alt: Latest PyPI version
 
-.. image:: https://pypip.in/d/pycabara/badge.png
+.. image:: https://img.shields.io/pypi/dm/pycabara.svg
     :target: https://crate.io/packages/pycabara/
     :alt: Number of PyPI downloads
 
